@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=9c915b5e4bb9b4cbcafbd606c8f8e46b&amp;type=3#Style" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="height: 50px; align-items: flex-end;">
+            <ui:Button text="X" display-tooltip-when-elided="true" name="btnWeb3ModalClose" class="btn-red" style="top: 10px; right: 10px; font-size: 30px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; -unity-font: url(&apos;project://database/Assets/UI/EleganceUI/Pribambas.ttf?fileID=12800000&amp;guid=96b9ee3a7ff2145cf8c2cc501f999409&amp;type=3#Pribambas&apos;); visibility: hidden;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: flex-start; align-items: center; flex-wrap: nowrap; flex-direction: column;">
+            <ui:Label text="Login to Beamon" display-tooltip-when-elided="true" class="title" />
+            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: 50px;">
+                <ui:TextField picking-mode="Ignore" label="Email :" value="filler text" name="txtEmail" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: 50px;">
+                <ui:TextField picking-mode="Ignore" label="Password :" value="filler text" name="txtPassword" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Button text="Connect" display-tooltip-when-elided="true" name="btnConnect" class="btn-green" style="width: 400px; top: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="veMetamask" style="flex-grow: 1; align-items: center; justify-content: center; display: flex;">
+            <ui:Label text="Register" display-tooltip-when-elided="true" class="title" />
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Button text="Register" display-tooltip-when-elided="true" name="btnRegister" class="btn-green" style="width: 400px; top: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

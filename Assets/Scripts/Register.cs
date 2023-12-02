@@ -1,12 +1,6 @@
-using System.Threading.Tasks;
-using Assets.Service;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using Web3Unity;
-using ZXing;
-using ZXing.QrCode;
 
 public class Register : MonoBehaviour
 {

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 public class TokenResponse
 {
-    [JsonProperty("token")]
+    [JsonProperty("accessToken")]
     public string Token { get; set; }
 }
 
@@ -18,9 +18,14 @@ public class ErrorResponse
 
 public class LoginVM
 {
-    public string Signer { get; set; } // Ethereum account that claim the signature
-    public string Signature { get; set; } // The signature
-    public string Message { get; set; } // The plain message
+    /// <summary>
+    /// The user's email address 
+    /// </summary>
+    public string Email { get; set; }
+    /// <summary>
+    /// The user's password.
+    /// </summary>
+    public string Password { get; set; }
 }
 
 public class UserVM
