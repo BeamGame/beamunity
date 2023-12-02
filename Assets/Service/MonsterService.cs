@@ -6,17 +6,23 @@ namespace Assets.Service
 {
     public class MonsterService
     {
-        private static string serviceUrl = "https://localhost:7062/api/monster";
+        private static string serviceUrl = "https://localhost:7171/api/monster";
 
 
         static MonsterService()
         {
-            serviceUrl = "https://imxserver.azurewebsites.net/api/monster";
+            serviceUrl = "https://beam-server.azurewebsites.net/api/monster";
 
 #if UNITY_EDITOR
-            serviceUrl = "https://localhost:7062/api/monster";
+            serviceUrl = "https://localhost:7171/api/monster";
 #endif
 
+        }
+        public static async Task<List<TokenDto>> MintStarter()
+        {
+            Debug.Log("MintStarter");
+            var url = serviceUrl + "/MintStarter";
+            return await UnityRequestClient.Post<List<TokenDto>>(url);
         }
 
         public static async Task<List<TokenDto>> MintMonster(AddMonsterDto monsterInfo)
@@ -46,7 +52,7 @@ namespace Assets.Service
             var url = serviceUrl + "/TransferMonsters";
             var monsterInfo = new TransferMonsterDto()
             {
-                TokenId = tokenId,
+                MonsterId = tokenId,
                 UserName = playerName
             };
             return await UnityRequestClient.Post<List<TokenDto>>(url, monsterInfo);

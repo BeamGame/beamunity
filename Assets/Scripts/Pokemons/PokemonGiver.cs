@@ -14,7 +14,7 @@ public class PokemonGiver : MonoBehaviour, ISavable
         yield return DialogManager.Instance.ShowDialog(dialog);
 
         pokemonToGive.Init();
-        player.GetComponent<PokemonParty>().AddPokemon(pokemonToGive);
+        player.GetComponent<PokemonParty>().GetStarter(pokemonToGive);
 
         used = true;
 

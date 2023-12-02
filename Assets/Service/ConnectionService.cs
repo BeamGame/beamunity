@@ -64,6 +64,14 @@ public class ConnectionService
         return loginInfo;
     }
 
+    public static async Task<PlayerName> UpdateUsername(PlayerName loginInfo)
+    {
+        Debug.Log("update player name");
+        var url = serviceUrl + "api/login/update";
+        var player = await UnityRequestClient.Post<PlayerName>(url, loginInfo);
+        return player;
+    }
+
     public static async Task<MessageVM> RequestConnection(string account)
     {
         Debug.Log("GetTokenAsync");

@@ -6,15 +6,16 @@
         </ui:VisualElement>
         <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: flex-start; align-items: center; flex-wrap: nowrap; flex-direction: column; flex-basis: 70%;">
             <ui:Label text="Login to Beamon" display-tooltip-when-elided="true" class="title" />
-            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: 50px;">
-                <ui:TextField picking-mode="Ignore" label="Email :" value="filler text" name="txtEmail" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px;" />
+            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 30px;">
+                <ui:TextField picking-mode="Ignore" label="Username :" value="filler text" name="txtEmail" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px;" />
             </ui:VisualElement>
-            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: 50px;">
-                <ui:TextField picking-mode="Ignore" label="Password :" value="filler text" name="txtPassword" password="true" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: 50px;" />
+            <ui:VisualElement style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 10px;">
+                <ui:TextField picking-mode="Ignore" label="Password :" value="filler text" name="txtPassword" password="true" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: auto;" />
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+            <ui:VisualElement style="margin-top: 10px;">
                 <ui:Button text="Connect" display-tooltip-when-elided="true" name="btnConnect" class="btn-green" style="width: 400px; top: 10px;" />
             </ui:VisualElement>
+            <ui:Label text="Errordentity API endpoints to an ASP.NET Core application relies on two new methods: AddIdentityApiEndpoints() , which configures the ..." display-tooltip-when-elided="true" name="lblError" style="border-top-width: 30px; font-size: 20px; color: rgb(255, 18, 18); margin-top: 20px; flex-wrap: wrap; white-space: normal;" />
         </ui:VisualElement>
         <ui:VisualElement name="veMetamask" style="flex-grow: 1; align-items: center; justify-content: center; display: flex;">
             <ui:Label text="Register" display-tooltip-when-elided="true" class="title" />

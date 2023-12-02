@@ -368,7 +368,7 @@ public class Pokemon
         {
             UpdateMonsterDto monsterDto = new UpdateMonsterDto()
             {
-                TokenId = TokenId,
+                MonsterId = TokenId,
                 Exp = Exp,
                 Level = Level
             };

@@ -18,8 +18,10 @@ public class Login : MonoBehaviour
     protected Button btnRegister;
     protected TextField txtEmail;
     protected TextField txtPassword;
+    protected Label lblError;
 
-
+    const string username = "username";
+    const string password = "password";
 
     void Start()
     {
@@ -30,9 +32,15 @@ public class Login : MonoBehaviour
         btnRegister = root.Q<Button>("btnRegister");
         txtEmail = root.Q<TextField>("txtEmail");
         txtPassword = root.Q<TextField>("txtPassword");
+        lblError = root.Q<Label>("lblError");
 
         btnConnect.clicked += BtnConnect_clicked;
         btnRegister.clicked += BtnRegister_clicked;
+
+        txtEmail.value = PlayerPrefs.GetString(username, "");
+        txtPassword.value = PlayerPrefs.GetString(password, "");
+
+        lblError.text = string.Empty;
 
     }
 
@@ -43,18 +51,30 @@ public class Login : MonoBehaviour
 
     private async void BtnConnect_clicked()
     {
-        Debug.Log("connected account " + txtEmail.text);
+        try
+        {
+            Debug.Log("connected account " + txtEmail.text);
 
-        LoginVM loginVM = new LoginVM() { Email = txtEmail.text, Password = txtPassword.text };
-        // get auth infos
-        var token = await ConnectionService.GetTokenAsync(loginVM);      
-        GameContext.Instance.Token = token;
-        Debug.Log("Token " + token);
-        var player = await ConnectionService.GetUserName();
-        Debug.Log($"Player {player.Name}");
-        GameContext.Instance.Name = player.Name;
-        SceneManager.LoadScene("GamePlay");
-        Debug.Log("Scene loaded");
+            LoginVM loginVM = new LoginVM() { Email = txtEmail.text, Password = txtPassword.text };
+            // get auth infos
+            var token = await ConnectionService.GetTokenAsync(loginVM);
+            GameContext.Instance.Token = token;
+            Debug.Log("Token " + token);
+            var player = await ConnectionService.GetUserName();
+            Debug.Log($"Player {player.Name}");
+            GameContext.Instance.Name = player.Name;
+
+            PlayerPrefs.SetString(password, txtPassword.text);
+            PlayerPrefs.SetString(username, txtEmail.text);
+            PlayerPrefs.Save();
+
+            SceneManager.LoadScene("GamePlay");
+            Debug.Log("Scene loaded");
+        }
+        catch (System.Exception ex)
+        {
+            lblError.text = ex.Message;
+        }
     }
 
     void Update()

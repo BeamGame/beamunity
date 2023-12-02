@@ -30,9 +30,9 @@ public class PokemonParty : MonoBehaviour
         {
             foreach (var item in monsters)
             {
-                var pokeDb = PokemonDB.GetObjectByName(item.Monster.Name);
+                var pokeDb = PokemonDB.GetObjectByName(item.Beamon.Name);
                 var pokemon = new Pokemon(pokeDb, item.Level);
-                pokemon.TokenId = item.TokenId;
+                pokemon.TokenId = item.MonsterId;
                 Pokemons.Add(pokemon);
             }
             OnUpdated?.Invoke();
@@ -51,6 +51,13 @@ public class PokemonParty : MonoBehaviour
     public Pokemon GetHealthyPokemon()
     {
         return pokemons.Where(x => x.HP > 0).FirstOrDefault();
+    }
+
+    public async void GetStarter(Pokemon newPokemon)
+    {
+        await MonsterService.MintStarter();
+        pokemons.Add(newPokemon);
+        OnUpdated?.Invoke();
     }
 
     public async void AddPokemon(Pokemon newPokemon)

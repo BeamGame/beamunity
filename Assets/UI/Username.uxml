@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=9c915b5e4bb9b4cbcafbd606c8f8e46b&amp;type=3#Style" />
+    <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: flex-start; align-items: center; flex-wrap: nowrap; flex-direction: column; flex-basis: auto;">
+        <ui:Label text="Register to Beamon" display-tooltip-when-elided="true" name="Label" class="title" style="margin-top: 10px;" />
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 20px;">
+            <ui:TextField picking-mode="Ignore" label="Username :" value="filler text" name="txtName" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: auto;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 20px;" />
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: center; justify-content: space-between; top: auto; margin-top: 20px;">
+            <ui:Button text="Register" display-tooltip-when-elided="true" name="btnCreate" class="btn-green" style="width: 400px; top: 10px;" />
+        </ui:VisualElement>
+        <ui:Label text="Creating ..." display-tooltip-when-elided="true" name="lblError" style="border-top-width: 30px; font-size: 20px; color: rgb(255, 18, 18); margin-top: 20px; flex-wrap: wrap; white-space: normal;" />
+    </ui:VisualElement>
+</ui:UXML>
