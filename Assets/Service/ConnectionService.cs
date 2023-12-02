@@ -20,15 +20,15 @@ class LoginRequest
 
 public class ConnectionService
 {
-    private static string serviceUrl = "https://localhost:7062/api/login";
+    private static string serviceUrl = "https://localhost:7171/";
 
 
     static ConnectionService()
     {
-        serviceUrl = "https://beam-server.azurewebsites.net/api/account/login";
+        serviceUrl = "https://beam-server.azurewebsites.net/";
 
 #if UNITY_EDITOR
-        serviceUrl = "https://localhost:7171/api/account/login";
+        serviceUrl = "https://localhost:7171/";
 #endif
 
     }
@@ -36,10 +36,32 @@ public class ConnectionService
     public static async Task<string> GetTokenAsync(LoginVM loginInfo)
     {
         Debug.Log("GetTokenAsync");
-        var url = serviceUrl;
+        var url = serviceUrl+ "api/account/login";
         var response = await UnityRequestClient.Post<TokenResponse>(url, loginInfo);
         Debug.Log("token created");
         return response.Token;
+    }
+
+    public static async Task<PlayerName> GetUserName()
+    {
+        Debug.Log("get player name");
+        var url = serviceUrl + "api/login";
+        var response = await UnityRequestClient.Get<PlayerName>(url);
+        Debug.Log("name" + response.Name);
+        return response;
+    }
+
+
+    public static async Task<RegisterVM> RegisterUser(RegisterVM loginInfo)
+    {
+        Debug.Log("get player name");
+        var url = serviceUrl + "api/account/register";
+        await UnityRequestClient.Post(url,loginInfo);
+        LoginVM loginVM = new LoginVM() { Email = loginInfo.Email, Password = loginInfo.Password };
+        // get auth infos
+        var token = await GetTokenAsync(loginVM);
+        GameContext.Instance.Token = token;
+        return loginInfo;
     }
 
     public static async Task<MessageVM> RequestConnection(string account)

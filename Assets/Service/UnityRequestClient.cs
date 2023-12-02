@@ -105,4 +105,37 @@ public class UnityRequestClient
         }
         return default(T);
     }
+
+    public async static Task Post(string url, object data)
+    {
+
+        using (var unityRequest = new UnityWebRequest(url, "POST"))
+        {
+            if (!string.IsNullOrEmpty(GameContext.Instance.Token))
+            {
+                unityRequest.SetRequestHeader("Authorization", "Bearer " + GameContext.Instance.Token);
+            }
+            unityRequest.SetRequestHeader("Content-Type", "application/json");
+
+            var rpcRequestJson = JsonConvert.SerializeObject(data);
+            var requestBytes = Encoding.UTF8.GetBytes(rpcRequestJson);
+            var uploadHandler = new UploadHandlerRaw(requestBytes);
+
+            uploadHandler.contentType = "application/json";
+            unityRequest.uploadHandler = uploadHandler;
+            unityRequest.downloadHandler = new DownloadHandlerBuffer();
+
+            await unityRequest.SendWebRequest();
+
+            if (unityRequest.error != null)
+            {
+#if DEBUG
+                Debug.LogError(unityRequest.error);
+#endif
+                throw new InvalidOperationException("Error server " + unityRequest.error);
+            }
+          
+
+        }
+    }
 }

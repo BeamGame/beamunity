@@ -38,7 +38,7 @@ public class Login : MonoBehaviour
 
     private void BtnRegister_clicked()
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene("Register");
     }
 
     private async void BtnConnect_clicked()
@@ -50,7 +50,10 @@ public class Login : MonoBehaviour
         var token = await ConnectionService.GetTokenAsync(loginVM);      
         GameContext.Instance.Token = token;
         Debug.Log("Token " + token);
-        SceneManager.LoadScene("Register");
+        var player = await ConnectionService.GetUserName();
+        Debug.Log($"Player {player.Name}");
+        GameContext.Instance.Name = player.Name;
+        SceneManager.LoadScene("GamePlay");
         Debug.Log("Scene loaded");
     }
 

@@ -344,6 +344,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098baf22e99e449f19cea923fd3da3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encoded: {fileID: 0}
-  LastResult: 
-  shouldEncodeNow: 0

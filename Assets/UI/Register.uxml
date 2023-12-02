@@ -1,9 +1,19 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=9c915b5e4bb9b4cbcafbd606c8f8e46b&amp;type=3#Style" />
-    <ui:VisualElement style="flex-grow: 1; align-items: center;">
-        <ui:Label text="Player" display-tooltip-when-elided="true" style="border-top-width: 30px; font-size: 40px;" />
-        <ui:TextField picking-mode="Ignore" label="Name" name="txtName" style="width: 600px; border-top-width: 50px; font-size: 30px;" />
-        <ui:Button text="Register Player" display-tooltip-when-elided="true" name="btnCreate" class="btn-green" style="margin-top: 50px;" />
-        <ui:Label text="Error" display-tooltip-when-elided="true" name="lblError" style="border-top-width: 30px; font-size: 30px; color: rgb(255, 18, 18); margin-top: 30px;" />
+    <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: flex-start; align-items: center; flex-wrap: nowrap; flex-direction: column; flex-basis: 70%;">
+        <ui:Label text="Register to Beamon" display-tooltip-when-elided="true" name="Label" class="title" style="margin-top: 10px;" />
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 20px;">
+            <ui:TextField picking-mode="Ignore" label="Email :" value="filler text" name="txtEmail" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: auto;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: stretch; justify-content: space-between; top: auto; margin-top: 20px;">
+            <ui:TextField picking-mode="Ignore" label="Password :" value="filler text" name="txtPassword" password="true" style="justify-content: space-between; flex-direction: row; flex-shrink: 1; flex-grow: 1; flex-basis: 1024px; top: auto;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-direction: row; align-items: center; justify-content: space-between; top: auto; margin-top: 20px;">
+            <ui:Button text="Register" display-tooltip-when-elided="true" name="btnCreate" class="btn-green" style="width: 400px; top: 10px;" />
+        </ui:VisualElement>
+        <ui:Label text="Errordentity API endpoints to an ASP.NET Core application relies on two new methods: AddIdentityApiEndpoints() , which configures the ..." display-tooltip-when-elided="true" name="lblError" style="border-top-width: 30px; font-size: 20px; color: rgb(255, 18, 18); margin-top: 20px; flex-wrap: wrap; white-space: normal;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="align-items: center; justify-content: center; flex-basis: 30%; flex-grow: 1;">
+        <ui:Button text="Back" display-tooltip-when-elided="true" name="btnBack" class="btn-green" style="width: 400px; top: 10px;" />
     </ui:VisualElement>
 </ui:UXML>

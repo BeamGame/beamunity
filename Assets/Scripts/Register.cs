@@ -7,9 +7,11 @@ public class Register : MonoBehaviour
 
 
     protected VisualElement root;
-    protected TextField txtName;
+    protected TextField txtEmail;
+    protected TextField txtPassword;
     protected Label lblError;
     protected Button btnCreate;
+    protected Button btnBack;
 
     void Start()
     {
@@ -17,58 +19,45 @@ public class Register : MonoBehaviour
 
         root = GetComponent<UIDocument>().rootVisualElement;
         btnCreate = root.Q<Button>("btnCreate");
-        txtName = root.Q<TextField>("txtName");
+        btnBack = root.Q<Button>("btnBack");
+        //txtName = root.Q<TextField>("txtName");
+        txtEmail = root.Q<TextField>("txtEmail");
+        txtPassword = root.Q<TextField>("txtPassword");
         lblError = root.Q<Label>("lblError");
         btnCreate.clicked += BtnCreate_clicked;
-        btnCreate.visible = false;
-        txtName.visible = false;
+        btnBack.clicked += BtnBack_clicked;
+        //btnCreate.visible = false;
+        //txtName.visible = false;
 
-        lblError.text = "Loading player ...";
+        lblError.text = string.Empty;
 
-        GetPlayer();
+        
     }
 
+    private void BtnBack_clicked()
+    {
+        SceneManager.LoadScene("Login");
+    }
 
     private async void BtnCreate_clicked()
     {
-        if (!string.IsNullOrWhiteSpace(txtName.text) && txtName.text.Length > 3)
-        {
-            try
-            {
-                var player = await RegisterService.CreatePlayer(txtName.text);
-                lblError.text = "Player created";
-                Debug.Log($"Player {player.Name}");
-                GameContext.Instance.Name = player.Name;
-                SceneManager.LoadScene("GamePlay");
-            }
-            catch (System.Exception ex)
-            {
-                lblError.text = ex.Message;
-            }
-        }
-        else
-        {
-            lblError.text = "Name must be more than 3 characters";
-        }
-    }
 
-    private async void GetPlayer()
-    {
         try
         {
-            var player = await RegisterService.GetPlayer();
-            Debug.Log($"Player {player.Name}");
-            GameContext.Instance.Name = player.Name;
+            RegisterVM reg = new RegisterVM() { Email = txtEmail.text, Username = txtEmail.text, Password = txtPassword.text };
+            var player = await ConnectionService.RegisterUser(reg);
+            lblError.text = "Player created";
+            Debug.Log($"Player {player.Username}");
+            GameContext.Instance.Name = player.Username;
             SceneManager.LoadScene("GamePlay");
         }
         catch (System.Exception ex)
         {
-            btnCreate.visible = true;
-            txtName.visible = true;
-            Debug.LogWarning(ex.Message);
-            lblError.text = "";
+            lblError.text = ex.Message;
         }
     }
+
+
 
     void Update()
     {

@@ -28,6 +28,23 @@ public class LoginVM
     public string Password { get; set; }
 }
 
+public class RegisterVM
+{
+    /// <summary>
+    /// The user's email address 
+    /// </summary>
+    public string Username { get; set; }
+    /// <summary>
+    /// <summary>
+    /// The user's email address 
+    /// </summary>
+    public string Email { get; set; }
+    /// <summary>
+    /// The user's password.
+    /// </summary>
+    public string Password { get; set; }
+}
+
 public class UserVM
 {
     public string Account { get; set; } // Unique account name (the Ethereum account)
