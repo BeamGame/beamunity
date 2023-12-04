@@ -13,6 +13,8 @@ public class Swap : MonoBehaviour
     protected TextField txtBeamcoin;
     protected Label lblBeamcoin;
     protected Label lblBeam;
+    protected Label lblAddress;
+    protected Button btnPrice;
     protected Button btnSwap;
     protected Button btnBack;
 
@@ -23,24 +25,48 @@ public class Swap : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         btnSwap = root.Q<Button>("btnSwap");
         btnBack = root.Q<Button>("btnBack");
+        btnPrice = root.Q<Button>("btnPrice");
 
         lblState = root.Q<Label>("lblState");
         txtBeamcoin = root.Q<TextField>("txtBeamcoin");
         lblBeamcoin = root.Q<Label>("lblBeamcoin");
         lblBeam = root.Q<Label>("lblBeam");
-        //   btnSwap.clicked += BtnSwap_clicked;
+        lblAddress = root.Q<Label>("lblAddress");
+        btnSwap.clicked += BtnSwap_clicked;
         btnBack.clicked += BtnBack_clicked;
+        btnPrice.clicked += BtnPrice_clicked;
         //btnCreate.visible = false;
         //txtName.visible = false;
+        lblState.text = string.Empty;
 
 
         Load();
     }
 
-    private void BtnSwap_clicked()
+    private async void BtnPrice_clicked()
     {
+        lblState.text = "Get price ...";
+        decimal res = await ConnectionService.GetPrice(decimal.Parse(txtBeamcoin.text));
+        lblState.text = $"You will get {res} BEAM";
+    }
+
+    private async void BtnSwap_clicked()
+    {
+        try
+        {
+            lblState.text = "Swaping ...";
+            BalanceDto balanceDto = new BalanceDto() { BeamonCoin = decimal.Parse(txtBeamcoin.text), Address = "0x0", Native = 0.00001m };
+            await ConnectionService.Swap(balanceDto);
+        }
+        catch (System.Exception ex)
+        {
+            lblState.text = "Error on swap retry later";
+        }
+        finally
+        {
+            Load();
+        }
         //throw new System.NotImplementedException();
-        SceneManager.LoadScene("GamePlay");
     }
 
     private void BtnBack_clicked()
@@ -53,8 +79,11 @@ public class Swap : MonoBehaviour
         // encode the last found
         try
         {
-            var qrCode = await ConnectionService.GetQrCode();
-      
+            var balance = await ConnectionService.GetBalance();
+
+            lblBeamcoin.text = "Balance " + balance.BeamonCoin.ToString() + " BMC";
+            lblBeam.text = "Balance " + balance.Native.ToString() + " BEAM";
+            lblAddress.text = "Public Address " + balance.Address;
         }
         catch (Exception ex)
         {
@@ -69,5 +98,5 @@ public class Swap : MonoBehaviour
 
     }
 
-   
+
 }

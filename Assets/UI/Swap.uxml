@@ -3,11 +3,13 @@
     <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: space-around; align-items: center; flex-wrap: nowrap; flex-direction: column;">
             <ui:Label text="Swap" display-tooltip-when-elided="true" class="title" />
-            <ui:VisualElement style="flex-grow: 1; align-items: stretch; justify-content: space-around;">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: space-around;">
+                <ui:Label text="Public address" display-tooltip-when-elided="true" name="lblAddress" />
                 <ui:Label text="Actual Beamon coin" display-tooltip-when-elided="true" name="lblBeamcoin" />
                 <ui:Label text="Actual beam" display-tooltip-when-elided="true" name="lblBeam" />
-                <ui:TextField picking-mode="Ignore" label="Beamon Coin" value="filler text" text="0" name="txtBeamcoin" style="flex-grow: 0; flex-shrink: 1; align-items: center;" />
+                <ui:TextField picking-mode="Ignore" label="Beamon Coin" value="filler text" text="0" name="txtBeamcoin" style="flex-grow: 0; flex-shrink: 1; align-items: center; width: auto; min-width: 400px;" />
                 <ui:Label text="Swapping" display-tooltip-when-elided="true" name="lblState" />
+                <ui:Button text="Get price" display-tooltip-when-elided="true" name="btnPrice" class="btn-green" style="width: 400px; top: 10px;" />
                 <ui:Button text="Swap" display-tooltip-when-elided="true" name="btnSwap" class="btn-green" style="width: 400px; top: 10px;" />
                 <ui:Button text="Back" display-tooltip-when-elided="true" name="btnBack" class="btn-green" style="width: 400px; top: 10px;" />
             </ui:VisualElement>

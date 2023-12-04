@@ -80,3 +80,10 @@ public class TransferMonsterDto
     public int MonsterId { get; set; }
     public string UserName { get; set; }
 }
+
+public class BalanceDto
+{
+    public string Address { get; set; }
+    public decimal Native { get; set; }
+    public decimal BeamonCoin { get; set; }
+}

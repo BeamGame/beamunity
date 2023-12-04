@@ -61,6 +61,32 @@ public class ConnectionService
     }
 
 
+    public static async Task<BalanceDto> GetBalance()
+    {
+        Debug.Log("GetBalance");
+        var url = serviceUrl + "api/swap";
+        var response = await UnityRequestClient.Get<BalanceDto>(url);
+        Debug.Log("balnce" + response.BeamonCoin);
+        return response;
+    }
+
+    public static async Task<decimal> GetPrice(decimal priceIn)
+    {
+        Debug.Log("GetPrice");
+        var url = serviceUrl + "api/swap/Price";
+        var response = await UnityRequestClient.Get<decimal>(url + "?price=" + priceIn);
+        Debug.Log("price" + response);
+        return response;
+    }
+
+    public static async Task Swap(BalanceDto dto)
+    {
+        Debug.Log("Swap");
+        var url = serviceUrl + "api/swap";
+        await UnityRequestClient.Post<BalanceDto>(url, dto);
+    }
+
+
     public static async Task<RegisterVM> RegisterUser(RegisterVM loginInfo)
     {
         Debug.Log("get player name");
