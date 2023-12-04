@@ -30,6 +30,12 @@ public class QuestList : MonoBehaviour, ISavable
         return questStatus == QuestStatus.Completed;
     }
 
+    public void Complete(string questName)
+    {
+        var questStatus = quests.FirstOrDefault(q => q.Base.Name == questName)?.Status;
+        questStatus = QuestStatus.Completed;
+    }
+
     public static QuestList GetQuestList()
     {
         return FindObjectOfType<PlayerController>().GetComponent<QuestList>();

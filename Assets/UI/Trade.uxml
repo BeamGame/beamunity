@@ -1,22 +1,27 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=9c915b5e4bb9b4cbcafbd606c8f8e46b&amp;type=3#Style" />
-    <ui:VisualElement style="flex-grow: 1; flex-direction: column; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; background-color: rgba(255, 255, 255, 0.2);">
-        <ui:VisualElement name="veHeader" style="justify-content: flex-end; flex-direction: row;">
-            <ui:VisualElement style="flex-grow: 1; align-items: center;">
-                <ui:Label text="Trade" display-tooltip-when-elided="true" style="align-items: flex-start;" />
-            </ui:VisualElement>
-            <ui:Button text="X" display-tooltip-when-elided="true" name="btnClose" class="btn-red" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="height: 50px; align-items: flex-end;">
+            <ui:Button text="X" display-tooltip-when-elided="true" name="btnWeb3ModalClose" class="btn-red" style="top: 10px; right: 10px; font-size: 30px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; -unity-font: url(&apos;project://database/Assets/UI/EleganceUI/Pribambas.ttf?fileID=12800000&amp;guid=96b9ee3a7ff2145cf8c2cc501f999409&amp;type=3#Pribambas&apos;); visibility: hidden;" />
         </ui:VisualElement>
-        <ui:VisualElement name="veContent" style="flex-grow: 1; flex-direction: row; min-width: auto; min-height: auto;">
-            <ui:VisualElement style="flex-grow: 1;">
-                <ui:DropdownField label="Illumon" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ddPokemon" />
-            </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 1; min-width: auto; min-height: auto;">
-                <ui:DropdownField label="User" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ddUser" />
+        <ui:VisualElement name="veWalletConnect" style="flex-grow: 1; justify-content: flex-start; align-items: center; flex-wrap: nowrap; flex-direction: column;">
+            <ui:Label text="Wallet Connect" display-tooltip-when-elided="true" class="title" />
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:VisualElement name="imgQrCode" style="width: 300px; height: 300px; background-color: rgb(255, 255, 255);" />
+                <ui:Button text="Regenerate" display-tooltip-when-elided="true" name="btnWeb3ModalWC" class="btn-green" style="width: 400px; top: 10px;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="veFooter" style="flex-direction: row; align-items: center; justify-content: center;">
-            <ui:Button text="Send Illumon" display-tooltip-when-elided="true" name="btnTrade" class="btn-green" />
+        <ui:VisualElement name="veMetamask" style="flex-grow: 1; align-items: center; justify-content: center; display: flex;">
+            <ui:Label text="Metamask" display-tooltip-when-elided="true" class="title" />
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Button text="Connect" display-tooltip-when-elided="true" name="btnWeb3ModalMetamask" class="btn-green" style="width: 400px; top: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="veTest" style="flex-grow: 1; align-items: center; justify-content: center; display: flex;">
+            <ui:Label text="Test Account" display-tooltip-when-elided="true" enable-rich-text="true" class="title" />
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Button text="Connect" display-tooltip-when-elided="true" name="btnWeb3Test" class="btn-green" style="width: 400px; top: auto;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

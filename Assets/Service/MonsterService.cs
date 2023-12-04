@@ -46,6 +46,13 @@ namespace Assets.Service
             return await UnityRequestClient.Get<List<TokenDto>>(url);
         }
 
+        public static async Task<bool> HaveStarter()
+        {
+            Debug.Log("HaveStarter");
+            var url = serviceUrl + "/HaveStarter";
+            return await UnityRequestClient.Get<bool>(url);
+        }
+
         public static async Task<List<TokenDto>> TransferMonster(int tokenId, string playerName)
         {
             Debug.Log("TransferMonster");

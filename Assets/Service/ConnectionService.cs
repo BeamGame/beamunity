@@ -51,6 +51,15 @@ public class ConnectionService
         return response;
     }
 
+    public static async Task<PlayerName> GetQrCode()
+    {
+        Debug.Log("get player name");
+        var url = serviceUrl + "api/login/ConnectionRequest";
+        var response = await UnityRequestClient.Get<PlayerName>(url);
+        Debug.Log("name" + response.Name);
+        return response;
+    }
+
 
     public static async Task<RegisterVM> RegisterUser(RegisterVM loginInfo)
     {
