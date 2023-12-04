@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState { FreeRoam, Battle, Dialog, Menu, PartyScreen, Bag, Cutscene, Paused, Evolution, Shop }
 
@@ -248,6 +249,10 @@ public class GameController : MonoBehaviour
             // Load
             SavingSystem.i.Load("saveSlot1");
             state = GameState.FreeRoam;
+        }
+        else if (selectedItem == 4)
+        {
+            SceneManager.LoadScene("Swap");
         }
     }
 

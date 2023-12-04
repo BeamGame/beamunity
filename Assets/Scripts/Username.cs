@@ -39,6 +39,7 @@ public class Username : MonoBehaviour
 
         try
         {
+            lblError.text = "Registering ...";
             PlayerName reg = new PlayerName() {  Name = txtName.text };
             var player = await ConnectionService.UpdateUsername(reg);
             lblError.text = "Login created";

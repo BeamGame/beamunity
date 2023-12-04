@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using ZXing.QrCode;
 using ZXing;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Swap : MonoBehaviour
 {
@@ -19,19 +20,22 @@ public class Swap : MonoBehaviour
     protected Button btnSwap;
     protected Button btnBack;
 
+    protected Label lblState;
+
     void Start()
     {
         encoded = new Texture2D(512, 512);
 
         root = GetComponent<UIDocument>().rootVisualElement;
-        btnSwap = root.Q<Button>("btnSwap");
+        //btnSwap = root.Q<Button>("btnSwap");
         btnBack = root.Q<Button>("btnBack");
-        //txtName = root.Q<TextField>("txtName");
-        txtBeamcoin = root.Q<TextField>("txtBeamcoin");
-        lblBeamcoin = root.Q<Label>("lblBeamcoin");
-        lblBeam = root.Q<Label>("lblBeam");
+
+        lblState = root.Q<Label>("lblState");
+        /*  txtBeamcoin = root.Q<TextField>("txtBeamcoin");
+          lblBeamcoin = root.Q<Label>("lblBeamcoin");
+          lblBeam = root.Q<Label>("lblBeam");*/
         imgQrCode = root.Q<VisualElement>("imgQrCode");
-        btnSwap.clicked += BtnSwap_clicked;
+        //   btnSwap.clicked += BtnSwap_clicked;
         btnBack.clicked += BtnBack_clicked;
         //btnCreate.visible = false;
         //txtName.visible = false;
@@ -54,17 +58,25 @@ public class Swap : MonoBehaviour
     private async void Load()
     {
         // encode the last found
-        var qrCode = await ConnectionService.GetQrCode();
-        var textForEncoding = qrCode.Name;
-        if (textForEncoding != null)
+        try
         {
-            Debug.Log("set image");
-            var color32 = Encode(textForEncoding, encoded.width, encoded.height);
-            encoded.SetPixels32(color32);
-            encoded.Apply();
-            imgQrCode.style.backgroundImage = new StyleBackground(encoded);
-
+            var qrCode = await ConnectionService.GetQrCode();
+            var textForEncoding = qrCode.Name;
+            if (!string.IsNullOrEmpty(textForEncoding))
+            {
+                Debug.Log("set image");
+                var color32 = Encode(textForEncoding, encoded.width, encoded.height);
+                encoded.SetPixels32(color32);
+                encoded.Apply();
+                imgQrCode.style.backgroundImage = new StyleBackground(encoded);
+                lblState.text = "";
+            }
         }
+        catch (Exception ex)
+        {
+            lblState.text = "Maybe this account was already linked";
+        }
+
     }
 
     // Update is called once per frame

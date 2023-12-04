@@ -31,7 +31,7 @@ public class Register : MonoBehaviour
 
         lblError.text = string.Empty;
 
-        
+
     }
 
     private void BtnBack_clicked()
@@ -44,6 +44,7 @@ public class Register : MonoBehaviour
 
         try
         {
+            lblError.text = "Registering ...";
             RegisterVM reg = new RegisterVM() { Email = txtEmail.text, Username = txtEmail.text, Password = txtPassword.text };
             var player = await ConnectionService.RegisterUser(reg);
             lblError.text = "Player created";
