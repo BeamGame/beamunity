@@ -55,6 +55,8 @@ public class Login : MonoBehaviour
         {
             Debug.Log("connected account " + txtEmail.text);
 
+            lblError.text = "Connecting ...";
+
             LoginVM loginVM = new LoginVM() { Email = txtEmail.text, Password = txtPassword.text };
             // get auth infos
             var token = await ConnectionService.GetTokenAsync(loginVM);

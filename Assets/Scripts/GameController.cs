@@ -102,6 +102,12 @@ public class GameController : MonoBehaviour
         state = GameState.FreeRoam;
     }
 
+    public bool CanBattle()
+    {
+        var playerParty = playerController.GetComponent<PokemonParty>();
+        return playerParty.GetHealthyPokemon() != null;
+    }
+
     public void StartBattle(BattleTrigger trigger)
     {
         state = GameState.Battle;
