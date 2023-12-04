@@ -9,11 +9,7 @@ using System;
 
 public class Swap : MonoBehaviour
 {
-    // Texture for encoding 
-    private Texture2D encoded;
-
     protected VisualElement root;
-    protected VisualElement imgQrCode;
     protected TextField txtBeamcoin;
     protected Label lblBeamcoin;
     protected Label lblBeam;
@@ -24,17 +20,14 @@ public class Swap : MonoBehaviour
 
     void Start()
     {
-        encoded = new Texture2D(512, 512);
-
         root = GetComponent<UIDocument>().rootVisualElement;
-        //btnSwap = root.Q<Button>("btnSwap");
+        btnSwap = root.Q<Button>("btnSwap");
         btnBack = root.Q<Button>("btnBack");
 
         lblState = root.Q<Label>("lblState");
-        /*  txtBeamcoin = root.Q<TextField>("txtBeamcoin");
-          lblBeamcoin = root.Q<Label>("lblBeamcoin");
-          lblBeam = root.Q<Label>("lblBeam");*/
-        imgQrCode = root.Q<VisualElement>("imgQrCode");
+        txtBeamcoin = root.Q<TextField>("txtBeamcoin");
+        lblBeamcoin = root.Q<Label>("lblBeamcoin");
+        lblBeam = root.Q<Label>("lblBeam");
         //   btnSwap.clicked += BtnSwap_clicked;
         btnBack.clicked += BtnBack_clicked;
         //btnCreate.visible = false;
@@ -61,20 +54,11 @@ public class Swap : MonoBehaviour
         try
         {
             var qrCode = await ConnectionService.GetQrCode();
-            var textForEncoding = qrCode.Name;
-            if (!string.IsNullOrEmpty(textForEncoding))
-            {
-                Debug.Log("set image");
-                var color32 = Encode(textForEncoding, encoded.width, encoded.height);
-                encoded.SetPixels32(color32);
-                encoded.Apply();
-                imgQrCode.style.backgroundImage = new StyleBackground(encoded);
-                lblState.text = "";
-            }
+      
         }
         catch (Exception ex)
         {
-            lblState.text = "Maybe this account was already linked";
+            lblState.text = "Error on swap retry later";
         }
 
     }
@@ -85,17 +69,5 @@ public class Swap : MonoBehaviour
 
     }
 
-    private static Color32[] Encode(string textForEncoding, int width, int height)
-    {
-        var writer = new BarcodeWriter
-        {
-            Format = BarcodeFormat.QR_CODE,
-            Options = new QrCodeEncodingOptions
-            {
-                Height = height,
-                Width = width
-            }
-        };
-        return writer.Write(textForEncoding);
-    }
+   
 }

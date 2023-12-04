@@ -258,6 +258,10 @@ public class GameController : MonoBehaviour
         }
         else if (selectedItem == 4)
         {
+            SceneManager.LoadScene("Companion");
+        }
+        else if (selectedItem == 5)
+        {
             SceneManager.LoadScene("Swap");
         }
     }

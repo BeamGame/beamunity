@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Swap.unity
     guid: e56d7a48ce7fd77438fd43ed02b4344f
+  - enabled: 1
+    path: Assets/Scenes/Companion.unity
+    guid: a4878fd23cabf4e4b8554147374f5c4c
   m_configObjects: {}
