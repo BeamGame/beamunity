@@ -45,7 +45,7 @@ public class Username : MonoBehaviour
             lblError.text = "Login created";
             Debug.Log($"Player {player.Name}");
             GameContext.Instance.Name = player.Name;
-            SceneManager.LoadScene("Login");
+            SceneManager.LoadScene("GamePlay");
         }
         catch (System.Exception ex)
         {

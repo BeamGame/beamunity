@@ -18,6 +18,7 @@ public class GameContext
 
 
     public string Token { get; set; }
+    public string RefreshToken { get; set; }
     public string Account { get; set; }
     public string Name { get; set; }
 

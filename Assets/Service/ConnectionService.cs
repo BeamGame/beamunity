@@ -33,13 +33,13 @@ public class ConnectionService
 
     }
 
-    public static async Task<string> GetTokenAsync(LoginVM loginInfo)
+    public static async Task<TokenResponse> GetTokenAsync(LoginVM loginInfo)
     {
         Debug.Log("GetTokenAsync");
-        var url = serviceUrl+ "api/account/login";
+        var url = serviceUrl + "api/account/login";
         var response = await UnityRequestClient.Post<TokenResponse>(url, loginInfo);
         Debug.Log("token created");
-        return response.Token;
+        return response;
     }
 
     public static async Task<PlayerName> GetUserName()
@@ -65,11 +65,12 @@ public class ConnectionService
     {
         Debug.Log("get player name");
         var url = serviceUrl + "api/account/register";
-        await UnityRequestClient.Post(url,loginInfo);
+        await UnityRequestClient.Post(url, loginInfo);
         LoginVM loginVM = new LoginVM() { Email = loginInfo.Email, Password = loginInfo.Password };
         // get auth infos
         var token = await GetTokenAsync(loginVM);
-        GameContext.Instance.Token = token;
+        GameContext.Instance.Token = token.Token;
+        GameContext.Instance.RefreshToken = token.RefreshToken;
         return loginInfo;
     }
 
@@ -78,6 +79,9 @@ public class ConnectionService
         Debug.Log("update player name");
         var url = serviceUrl + "api/login/update";
         var player = await UnityRequestClient.Post<PlayerName>(url, loginInfo);
+        var token = await RefreshToken();
+        GameContext.Instance.Token = token.Token;
+        GameContext.Instance.RefreshToken = token.RefreshToken;
         return player;
     }
 
@@ -88,5 +92,13 @@ public class ConnectionService
         var url = $"{serviceUrl}/RequestConnection?account={account}";
 
         return await UnityRequestClient.Get<MessageVM>(url);
+    }
+
+    public static async Task<TokenResponse> RefreshToken()
+    {
+        Debug.Log("RefreshToken");
+        var url = serviceUrl + "api/account/refresh";
+        var player = await UnityRequestClient.Post<TokenResponse>(url, new TokenResponse() { RefreshToken = GameContext.Instance.RefreshToken });
+        return player;
     }
 }

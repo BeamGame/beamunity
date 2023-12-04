@@ -5,6 +5,9 @@ public class TokenResponse
 {
     [JsonProperty("accessToken")]
     public string Token { get; set; }
+
+    [JsonProperty("refreshToken")]
+    public string RefreshToken { get; set; }
 }
 
 public class ErrorResponse

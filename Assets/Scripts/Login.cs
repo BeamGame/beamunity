@@ -58,7 +58,8 @@ public class Login : MonoBehaviour
             LoginVM loginVM = new LoginVM() { Email = txtEmail.text, Password = txtPassword.text };
             // get auth infos
             var token = await ConnectionService.GetTokenAsync(loginVM);
-            GameContext.Instance.Token = token;
+            GameContext.Instance.Token = token.Token;
+            GameContext.Instance.RefreshToken = token.RefreshToken;
             Debug.Log("Token " + token);
             var player = await ConnectionService.GetUserName();
             Debug.Log($"Player {player.Name}");
